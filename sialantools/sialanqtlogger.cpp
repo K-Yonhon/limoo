@@ -74,6 +74,8 @@ void SialanQtLogger::logMsg(QtMsgType type, const QMessageLogContext &context, c
         p->file->write(text.toUtf8());
         p->file->flush();
         abort();
+    default:
+        break;
     }
 }
 

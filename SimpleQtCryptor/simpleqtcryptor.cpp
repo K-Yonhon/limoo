@@ -155,7 +155,7 @@ void Key::expandKeyRc532() {
     if (s32) return;
     if ( KEYSIZE_RC5 != keyRc5.size() ) {
         keyRc5 = resizeKey(KEYSIZE_RC5);
-    } 
+    }
     s32 = new quint32[SSIZE_RC5];
     quint32 *s = s32;
 
@@ -189,7 +189,7 @@ void Key::expandKeyRc564() {
     if (s64) return;
     if ( KEYSIZE_RC5 != keyRc5.size() ) {
         keyRc5 = resizeKey(KEYSIZE_RC5);
-    } 
+    }
     s64 = new quint64[SSIZE_RC5];
     quint64 *s = s64;
 
@@ -224,7 +224,7 @@ void Key::expandKeySerpent() {
     if (serpent) return;
     if ( KEYSIZE_SERPENT != keySerpent.size() ) {
         keySerpent = resizeKey(KEYSIZE_SERPENT);
-    } 
+    }
     serpent = new quint32[SSIZE_SERPENT];
     s = new quint32[SSIZE_SERPENT + 8];
 
@@ -322,6 +322,7 @@ Error Encryptor::encrypt(const QByteArray &plain, QByteArray &cipher, bool end) 
         // switch (checksum) HERE
 
         state = StateOn;
+        break;
     case StateOn:
         tmpIn.append(plain);
         cipher = modex->encrypt(tmpIn, end);
@@ -427,7 +428,7 @@ Error Decryptor::decrypt(const QByteArray &cipher, QByteArray &plain, bool end) 
             tmpOut.clear();
             return ErrorInvalidKey;
         }
-
+        break;
     case StateOn:
         if ( tmpIn.isEmpty() ) {
             tmpIn = cipher;
@@ -1157,7 +1158,7 @@ QByteArray CFB::encrypt(const QByteArray plain, bool end) {
             copysize--;
         }
         copysize = qMin( bufferlen , plainlen - plainpos );
-    }    
+    }
     if (end) {
         reset();
     }
@@ -1579,7 +1580,7 @@ void serpent_sbox_it(int sbox, quint32 &X1, quint32 &X2,
     quint32 newword, mask, X;
 
     X = X1;
-    /* Data block is 128 bits, integer is 32 bits => 4 loops */	
+    /* Data block is 128 bits, integer is 32 bits => 4 loops */
     for(i=0;i<4;i++) {
         newword = 0x0;
         switch(i) {
@@ -1598,7 +1599,7 @@ void serpent_sbox_it(int sbox, quint32 &X1, quint32 &X2,
         default:
             break;
         }
-	
+
         /* Copying on bit per loop round to its new position
            working on 2x16 bits */
         for(j=0;j<0x10;j++) {
@@ -1632,7 +1633,7 @@ void serpent_encrypt_4w(quint32 &X1a, quint32 &X2a,
     // for(round=0 ; round<ROUNDS ; round++) {
     round = 0;
     while ( 1 ) {
-    
+
         /* KEY MIXING */
         X1 = s[4*round    ] ^ X1;
         X2 = s[4*round + 1] ^ X2;
@@ -1760,7 +1761,7 @@ void serpent_print_sbox_h() {
     printf(" */\n\n");
 
     printf("#define WITH_SERPENT_FAST_SBOX\n\n");
-    
+
     printf("const quint16 serpent_sbox_fast_data[] = {\n");
 
     for ( sbox = 0 ; sbox < 16 ; sbox++ ) {

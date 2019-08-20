@@ -118,12 +118,12 @@ void PathHandler::refresh_output()
     QFileInfo file(p->input);
     if( file.suffix() == PATH_HANDLER_LLOCK_SUFFIX )
     {
-        p->output = "image://"PATH_HANDLER_NAME"/"PATH_HANDLER_LLOCK"/" + QString::number(p->id);
+        p->output = "image://" PATH_HANDLER_NAME "/" PATH_HANDLER_LLOCK"/" + QString::number(p->id);
     }
     else
     if( file.suffix() == PATH_HANDLER_LLOCK_SUFFIX_THUMB )
     {
-        p->output = "image://"PATH_HANDLER_NAME"/"PATH_HANDLER_LLOCK_THUMB"/" + QString::number(p->id);
+        p->output = "image://" PATH_HANDLER_NAME "/" PATH_HANDLER_LLOCK_THUMB"/" + QString::number(p->id);
     }
     else
     {

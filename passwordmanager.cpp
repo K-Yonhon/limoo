@@ -70,7 +70,7 @@ bool PasswordManager::fileIsEncrypted(QString path)
 {
     QFileInfo file(path);
     if( file.isDir() )
-        return QFile::exists(path+"/"PASS_FILE_NAME);
+        return QFile::exists(path+ "/" PASS_FILE_NAME);
     else
         return file.suffix() == PATH_HANDLER_LLOCK_SUFFIX;
 }
@@ -116,7 +116,7 @@ QString PasswordManager::passwordFileOf(QString path)
     if( file.isRoot() )
         return QString();
 
-    QString pass_file = path + "/"PASS_FILE_NAME;
+    QString pass_file = path+ "/" PASS_FILE_NAME;
     if( !QFile::exists(pass_file) )
         return passwordFileOf(file.dir().path());
     else
@@ -125,7 +125,7 @@ QString PasswordManager::passwordFileOf(QString path)
 
 bool PasswordManager::dirHasPassword(QString path)
 {
-    return QFile::exists(path+"/"PASS_FILE_NAME);
+    return QFile::exists(path+ "/" PASS_FILE_NAME);
 }
 
 QString PasswordManager::passwordOf(QString path)
@@ -193,7 +193,7 @@ QByteArray passHash(QString path)
     QByteArray result;
     if( QFileInfo(path).isDir() )
     {
-        QFile file(path+"/"PASS_FILE_NAME);
+        QFile file(path+ "/" PASS_FILE_NAME);
         if( !file.exists() || !file.open(QFile::ReadOnly) )
             return QByteArray();
 
